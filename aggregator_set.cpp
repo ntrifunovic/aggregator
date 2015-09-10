@@ -6,6 +6,8 @@
 #include <sstream>
 #include <iostream>
 
+#define MAX_COLUMNS 50
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -17,14 +19,14 @@ int main(int argc, char *argv[]) {
   set<pair<int, string>> set;
 
   string line;
+  string cells[MAX_COLUMNS];
+
+  ios_base::sync_with_stdio(false);
+
   while(getline(cin, line)) {
-    vector<string> cells;
-    string cell;
     stringstream lineStream(line);
 
-    while(getline(lineStream, cell,',')) {
-      cells.push_back(cell);
-    }
+    for(int i = 0; getline(lineStream, cells[i],','); i++);
 
     const int value = stoi(cells[aggregator]);
     const string key = cells[selector];
@@ -40,7 +42,7 @@ int main(int argc, char *argv[]) {
       set.insert(make_pair(newSum, key));
     }
 
-    map[cells[selector]] = newSum;
+    map[key] = newSum;
   }
 
   for (auto& elem: set) {

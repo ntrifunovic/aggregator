@@ -23,6 +23,9 @@ int main(int argc, char *argv[]) {
     stringstream lineStream(line);
 
     for(int i = 0; getline(lineStream, cells[i],','); i++);
+    
+    // extract key
+    stoi(cells[aggregator]);
   }
 
   cout << "All done" << endl;

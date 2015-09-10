@@ -5,6 +5,8 @@
 #include <sstream>
 #include <iostream>
 
+#define MAX_COLUMNS 50
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -15,14 +17,14 @@ int main(int argc, char *argv[]) {
   unordered_map<string, int> map;
 
   string line;
+  string cells[MAX_COLUMNS];
+
+  ios_base::sync_with_stdio(false);
+
   while(getline(cin, line)) {
-    vector<string> cells;
-    string cell;
     stringstream lineStream(line);
 
-    while(getline(lineStream, cell,',')) {
-      cells.push_back(cell);
-    }
+    for(int i = 0; getline(lineStream, cells[i],','); i++);
 
     map[cells[selector]] += stoi(cells[aggregator]);
   }
